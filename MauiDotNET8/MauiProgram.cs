@@ -2,6 +2,7 @@
 using MauiDotNET8.Interface;
 using MauiDotNET8.Screens;
 using MauiDotNET8.Utilities;
+using MauiDotNET8.Utilities.Auth;
 using MauiDotNET8.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -48,9 +49,10 @@ namespace MauiDotNET8
 
             //ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
-
+            builder.Services.AddTransient<UserViewModal>();
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();
+            builder.Services.AddSingleton<IB2CAuthenticationService, B2CAuthenticationService>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
