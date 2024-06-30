@@ -36,7 +36,15 @@ namespace MauiDotNET8
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             //Views
+            builder.Services.AddTransient<AboutPage>();
+            builder.Services.AddTransient<AddBloodPressureTestPage>();
+            builder.Services.AddTransient<BloodPressurePage>();
+            builder.Services.AddTransient<FAQPage>();
+            builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MorePage>();
+            builder.Services.AddTransient<NotificationDetailPage>();
 
             //ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
