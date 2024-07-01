@@ -10,8 +10,8 @@
         </Grid.RowDefinitions>
         <Border Stroke="WhiteSmoke" HorizontalOptions="Center" VerticalOptions="Center" StrokeShape="RoundRectangle 70,70,70,70" StrokeThickness ="1" WidthRequest="140" HeightRequest="140"  >
             <Grid>
-                <Image Source="user.png" Aspect="AspectFill" />
-                <Image x:Name="userProfileImage" Source="user.png" Aspect="AspectFill" >
+                <!--<Image Source="user.png" Aspect="AspectFill" />-->
+                <Image x:Name="userProfileImage" Source="{Binding MediaSource}" Aspect="AspectFill" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ImageGestureRecognizerTapped" />
                     </Image.GestureRecognizers>

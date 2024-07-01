@@ -45,12 +45,12 @@ namespace MauiDotNET8.ViewModels
         {
             try
             {
-                IsRunning = true;
-                var results = await authenticationService.SignInInteractively();
-                if (!string.IsNullOrEmpty(results.AccessToken))
+                //IsRunning = true;
+               // var results = await authenticationService.SignInInteractively();
+                //if (!string.IsNullOrEmpty(results.AccessToken))
                 {
-                    IsRunning = false;
-                    // Application.Current.MainPage = this.appShell;
+                    //IsRunning = false;
+                     Application.Current.MainPage = this.appShell;
                 }
 
             }

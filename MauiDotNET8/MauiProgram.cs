@@ -50,9 +50,12 @@ namespace MauiDotNET8
 
             //ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
+            builder.Services.AddTransient<FlyoutHeaderViewModel>();
             builder.Services.AddTransient<UserViewModal>();
+
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();
+            builder.Services.AddSingleton<IMediaPickerService, MediaPickerService>();
             builder.Services.AddSingleton<IB2CAuthenticationService, B2CAuthenticationService>();
 #if DEBUG
             builder.Logging.AddDebug();
