@@ -10,6 +10,7 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 		this.vm = userViewModal;
 		userViewModal.navigation = Navigation;
+        BindingContext = userViewModal;
 	}
 
     protected override void OnAppearing()

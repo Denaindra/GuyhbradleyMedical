@@ -46,4 +46,7 @@
     <!-- Dark Background Gradient -->
     <Color x:Key="DarkBackgroundGradientFirstColor">#2FAFD8</Color>
     <Color x:Key="DarkBackgroundGradientSecondColor">#04588E</Color>
+
+    <!-- Flyout Header -->
+    <Color x:Key="FlyOutHeaderBackgroundColor">#30B0D8</Color>
 </ResourceDictionary>

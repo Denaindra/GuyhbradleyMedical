@@ -41,9 +41,9 @@
 					IsVisible="true"
 					BackgroundColor="{DynamicResource White}"
 					TextColor="{DynamicResource Primary}"/>
-                    <ActivityIndicator x:Name="ActivityIndicator"
-							   IsRunning="False"
-							   IsVisible="false"
+                    <ActivityIndicator Color="Blue"
+							   IsRunning="{Binding IsRunning}"
+							   IsVisible="True"
 							   Grid.Row="2"/>
                 </Grid>
             </StackLayout>

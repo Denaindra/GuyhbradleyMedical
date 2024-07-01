@@ -6,5 +6,15 @@
         {
             InitializeComponent();
         }
+
+        private void MenuItem_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Clicked_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

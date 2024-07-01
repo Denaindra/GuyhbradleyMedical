@@ -4,12 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiDotNET8.Screens"
-    Shell.FlyoutBehavior="Disabled"
-    Title="MauiDotNET8">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    xmlns:controls="clr-namespace:MauiDotNET8.Controls"
+    FlyoutIcon="menu.png"
+    Title="Hampton Clinical">
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+    <FlyoutItem x:Name="MainFlyout" Title="Tests" Icon="tests.png">
+        <Tab Title="HomeTabText" Icon="tab_home.png">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+        </Tab>
+        <Tab Title="BloodTabText" Icon="tab_heart.png" Route="bloodpressure">
+            <ShellContent ContentTemplate="{DataTemplate local:BloodPressurePage}" />
+        </Tab>
+        <Tab Title="UrineTabText" Icon="tab_urine.png" Route="urineprotein">
+            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+    </FlyoutItem>
+    <MenuItem Text="FAQ's" IconImageSource="tab_faq.png" Clicked="MenuItem_Clicked" />
+    <MenuItem Text="Sign Out" IconImageSource="logout.png" Clicked="MenuItem_Clicked_1" />
 </Shell>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              HeightRequest="200"
+             x:Class="MauiDotNET8.Controls.FlyoutHeader">
+    <Grid BackgroundColor="{DynamicResource FlyOutHeaderBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border Stroke="WhiteSmoke" HorizontalOptions="Center" VerticalOptions="Center" StrokeShape="RoundRectangle 70,70,70,70" StrokeThickness ="1" WidthRequest="140" HeightRequest="140"  >
+            <Grid>
+                <Image Source="user.png" Aspect="AspectFill" />
+                <Image x:Name="userProfileImage" Source="user.png" Aspect="AspectFill" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageGestureRecognizerTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Border>
+        <Grid x:Name="profilePhotoButtonStackLayout" IsVisible="False" VerticalOptions="CenterAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="takePhotoButton" Clicked="TakePhotoButtonClicked" Text="Camera" HorizontalOptions="Center" ContentLayout="Left,5" ImageSource="camera.png" BackgroundColor="{DynamicResource Primary}" TextColor="White" Padding="5" Margin="0,0,0,10"/>
+            <Button x:Name="selectPhotoButton" Clicked="SelectPhotoButtonClicked" Text="Photo" Grid.Row="1" HorizontalOptions="Center" ContentLayout="Left,5" ImageSource="picture.png" BackgroundColor="{DynamicResource Primary}" TextColor="White" Padding="5" Margin="0,0,0,10"/>
+        </Grid>
+
+        <Label x:Name="patientNameLabel" Text="" 
+                   Grid.Row="1" 
+                   HorizontalTextAlignment="Center" 
+                   HorizontalOptions="Center" 
+                   FontSize="16"
+                   TextColor="White"/>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizerTapped"/>
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentView>

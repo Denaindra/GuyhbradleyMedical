@@ -7,6 +7,9 @@
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Controls\FlyoutHeader.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Screens\AboutPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
