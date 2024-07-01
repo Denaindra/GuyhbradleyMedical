@@ -17,7 +17,7 @@ public partial class LoginPage : ContentPage
         base.OnAppearing();
         vm.BuildTheApplicationbundle();
     }
-    private  void LoginBtnClicked(object sender, EventArgs e)
+    private  void OnSignInButtonClicked(object sender, EventArgs e)
     {
        vm.LoginSigin();
     }

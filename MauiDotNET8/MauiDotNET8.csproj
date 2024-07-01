@@ -57,6 +57,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\camera.png" />
+	  <None Remove="Resources\Images\hamptonlogo300h.png" />
+	  <None Remove="Resources\Images\ic_launcher.png" />
+	  <None Remove="Resources\Images\ic_launcher_foreground.png" />
+	  <None Remove="Resources\Images\ic_launcher_round.png" />
+	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\menu.png" />
+	  <None Remove="Resources\Images\picture.png" />
+	  <None Remove="Resources\Images\splash_screen.png" />
+	  <None Remove="Resources\Images\tab_about.png" />
+	  <None Remove="Resources\Images\tab_faq.png" />
+	  <None Remove="Resources\Images\tab_feed.png" />
+	  <None Remove="Resources\Images\tab_heart.png" />
+	  <None Remove="Resources\Images\tab_home.png" />
+	  <None Remove="Resources\Images\tab_more.png" />
+	  <None Remove="Resources\Images\tab_urine.png" />
+	  <None Remove="Resources\Images\tests.png" />
+	  <None Remove="Resources\Images\user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.5.4" />
 		<PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
