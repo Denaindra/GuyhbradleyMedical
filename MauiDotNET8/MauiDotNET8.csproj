@@ -40,11 +40,9 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <MauiIcon Include="Resources\AppIcon\appicon.png" Color="#512BD4" BaseSize="128,128" />
 
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
+    <MauiSplashScreen Include="Resources\Splash\splashscreen.png" Color="#FFFFFF" BaseSize="128,128" />
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
@@ -57,6 +55,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.png" />
 	  <None Remove="Resources\Images\camera.png" />
 	  <None Remove="Resources\Images\hamptonlogo300h.png" />
 	  <None Remove="Resources\Images\ic_launcher.png" />
@@ -75,6 +74,7 @@
 	  <None Remove="Resources\Images\tab_urine.png" />
 	  <None Remove="Resources\Images\tests.png" />
 	  <None Remove="Resources\Images\user.png" />
+	  <None Remove="Resources\Splash\splashscreen.png" />
 	</ItemGroup>
 
 	<ItemGroup>
