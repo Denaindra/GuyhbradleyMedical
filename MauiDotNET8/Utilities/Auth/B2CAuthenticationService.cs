@@ -84,6 +84,15 @@ namespace MauiDotNET8.Utilities.Auth
             var decoded = Encoding.UTF8.GetString(byteArray, 0, byteArray.Count());
             return decoded;
         }
+
+        public async Task<UserContext> SignOutInteractively()
+        {
+            var accounts = await this.PublicClientApplication.GetAccountsAsync();
+            await this.PublicClientApplication.RemoveAsync(accounts.FirstOrDefault()).ConfigureAwait(false);
+            var signedOutContext = new UserContext();
+            signedOutContext.IsLoggedOn = false;
+            return signedOutContext;
+        }
     }
 }
 

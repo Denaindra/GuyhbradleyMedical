@@ -12,5 +12,6 @@ namespace MauiDotNET8.Interface
     {
         void IntilizedTheAppplicationBulder();
         Task<UserContext> SignInInteractively();
+        Task<UserContext> SignOutInteractively();
     }
 }

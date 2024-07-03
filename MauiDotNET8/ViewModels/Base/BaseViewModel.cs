@@ -79,6 +79,10 @@ namespace MauiDotNET8.ViewModels.Base
         {
             await navigation.PopModalAsync();
         }
+        public async void PopToRootAsync()
+        {
+            await navigation.PopToRootAsync();
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

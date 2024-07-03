@@ -7,8 +7,7 @@ namespace MauiDotNET8
         public App(LoginPage loginPage)
         {
             InitializeComponent();
-
-            MainPage = loginPage;
+            MainPage = new NavigationPage(loginPage);
         }
     }
 }

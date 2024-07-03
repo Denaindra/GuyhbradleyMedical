@@ -22,5 +22,5 @@
         </Tab>
     </FlyoutItem>
     <MenuItem Text="FAQ's" IconImageSource="tab_faq.png" Clicked="MenuItem_Clicked" />
-    <MenuItem Text="Sign Out" IconImageSource="logout.png" Clicked="MenuItem_Clicked_1" />
+    <MenuItem Text="Sign Out" IconImageSource="logout.png" Clicked="MenuItemLogoutClicked" />
 </Shell>

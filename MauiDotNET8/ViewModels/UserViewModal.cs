@@ -1,5 +1,8 @@
-﻿using MauiDotNET8.Interface;
+﻿
+using MauiDotNET8.Helpers;
+using MauiDotNET8.Interface;
 using MauiDotNET8.Modals.Auth;
+using MauiDotNET8.Screens;
 using MauiDotNET8.ViewModels.Base;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Abstractions;
@@ -45,12 +48,12 @@ namespace MauiDotNET8.ViewModels
         {
             try
             {
-                //IsRunning = true;
-               // var results = await authenticationService.SignInInteractively();
-                //if (!string.IsNullOrEmpty(results.AccessToken))
+                IsRunning = true;
+                var results = await authenticationService.SignInInteractively();
+                if (!string.IsNullOrEmpty(results.AccessToken))
                 {
-                    //IsRunning = false;
-                     Application.Current.MainPage = this.appShell;
+                     IsRunning = false;
+                    Application.Current.MainPage = this.appShell;
                 }
 
             }
@@ -59,6 +62,29 @@ namespace MauiDotNET8.ViewModels
                 IsRunning = false;
             }
             
+        }
+
+        public async void LogoutSignOut()
+        {
+            try
+            {
+                IsRunning = true;
+                var results = await authenticationService.SignOutInteractively();
+                if (results.IsLoggedOn)
+                {
+                    IsRunning = false;
+                }
+            }
+            catch (MsalClientException e)
+            {
+                IsRunning = false;
+            }
+        }
+
+        public void NavigateBackToLoginPage()
+        {
+            var loginPage = ServiceHelper.GetService<LoginPage>();
+            Application.Current.MainPage = loginPage;
         }
     }
 }
