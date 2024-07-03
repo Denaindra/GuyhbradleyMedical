@@ -410,6 +410,18 @@
         <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style TargetType="FlyoutItem">
+        <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimaryColor}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource NavigationForegroundColor}" />
+        <Setter Property="Shell.TitleColor" Value="{StaticResource NavigationTitleTextColor}" />
+        <Setter Property="Shell.DisabledColor" Value="{StaticResource NavigationTextColor}" />
+        <Setter Property="Shell.UnselectedColor" Value="{StaticResource NavigationForegroundColor}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimaryColor}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource NavigationTextColor}"/>
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource NavigationTextColor}"/>
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource NavigationSelectedTabTextColor}"/>
+    </Style>
+
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />

@@ -49,4 +49,11 @@
 
     <!-- Flyout Header -->
     <Color x:Key="FlyOutHeaderBackgroundColor">#30B0D8</Color>
+
+    <!-- Navigation -->
+    <Color x:Key="NavigationPrimaryColor">#2FAFD8</Color>
+    <Color x:Key="NavigationForegroundColor">White</Color>
+    <Color x:Key="NavigationTextColor">Gainsboro</Color>
+    <Color x:Key="NavigationSelectedTabTextColor">White</Color>
+    <Color x:Key="NavigationTitleTextColor">White</Color>
 </ResourceDictionary>
