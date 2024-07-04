@@ -6,6 +6,7 @@ using MauiDotNET8.Screens;
 using MauiDotNET8.ViewModels.Base;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Abstractions;
+using Microsoft.Maui.Storage;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -49,13 +50,13 @@ namespace MauiDotNET8.ViewModels
             try
             {
                 IsRunning = true;
-                var results = await authenticationService.SignInInteractively();
-                if (!string.IsNullOrEmpty(results.AccessToken))
+                var userContext = await authenticationService.SignInInteractively();
+                if (!string.IsNullOrEmpty(userContext.AccessToken))
                 {
-                     IsRunning = false;
+                    IsRunning = false;
+                    await SecureStorage.Default.SetAsync("login", string.Format("{0} {1}", userContext.GivenName, userContext.FamilyName));
                     Application.Current.MainPage = this.appShell;
                 }
-
             }
             catch(MsalClientException e)
             {
@@ -64,6 +65,15 @@ namespace MauiDotNET8.ViewModels
             
         }
 
+        public async Task<string> GetValueFromLocalStorage(string key)
+        {
+            var value = await SecureStorage.Default.GetAsync("login"); 
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+            return value;
+        }
         public async void LogoutSignOut()
         {
             try
@@ -85,6 +95,24 @@ namespace MauiDotNET8.ViewModels
         {
             var loginPage = ServiceHelper.GetService<LoginPage>();
             Application.Current.MainPage = loginPage;
+        }
+
+        public async Task<string> GetLoginedUser()
+        {
+            try
+            {
+                var loggedUser = await SecureStorage.Default.GetAsync("login");
+                if (string.IsNullOrEmpty(loggedUser))
+                {
+                    return string.Empty;
+                }
+                return loggedUser;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+            return string.Empty;
         }
     }
 }

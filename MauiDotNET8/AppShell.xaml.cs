@@ -6,15 +6,18 @@ namespace MauiDotNET8
     public partial class AppShell : Shell
     {
         private UserViewModal vm;
+        private Label label;
         public AppShell()
         {
             InitializeComponent();
+            label = (Label)profilerPage.FindByName("patientNameLabel");
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             vm = ServiceHelper.GetService<UserViewModal>();
+            label.Text = await vm.GetLoginedUser();
         }
         private void MenuItem_Clicked(object sender, EventArgs e)
         {

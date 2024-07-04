@@ -1,5 +1,6 @@
 ﻿using MauiDotNET8.Interface;
 using MauiDotNET8.ViewModels.Base;
+using Microsoft.Maui.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MauiDotNET8.ViewModels
 {
-    public class FlyoutHeaderViewModel:BaseViewModel
+    public class FlyoutHeaderViewModel : BaseViewModel
     {
         private readonly IMediaPickerService mediaPickerService;
         private ImageSource mediaSource;
@@ -20,10 +21,12 @@ namespace MauiDotNET8.ViewModels
 
         public ImageSource MediaSource
         {
-            get { 
-                return mediaSource; 
+            get
+            {
+                return mediaSource;
             }
-            set { 
+            set
+            {
                 mediaSource = value;
                 OnPropertyChanged(nameof(MediaSource));
             }
@@ -32,7 +35,7 @@ namespace MauiDotNET8.ViewModels
         public async void CapturePhoto()
         {
             var photo = await mediaPickerService.CapturePhoto();
-            if(photo != null)
+            if (photo != null)
             {
                 MediaSource = photo;
             }

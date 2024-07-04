@@ -11,7 +11,7 @@ public partial class FlyoutHeader : ContentView
 		InitializeComponent();
         vm = ServiceHelper.GetService<FlyoutHeaderViewModel>();
         BindingContext = vm;
-        SetupUI();
+        Task.Run(() => SetupUI());
     }
 
     private void SetupUI()

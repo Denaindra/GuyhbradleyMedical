@@ -27,7 +27,7 @@
             <Button x:Name="selectPhotoButton" Clicked="SelectPhotoButtonClicked" Text="Photo" Grid.Row="1" HorizontalOptions="Center" ContentLayout="Left,5" ImageSource="picture.png" BackgroundColor="{DynamicResource Primary}" TextColor="White" Padding="5" Margin="0,0,0,10"/>
         </Grid>
 
-        <Label x:Name="patientNameLabel" Text="" 
+        <Label x:Name="patientNameLabel"
                    Grid.Row="1" 
                    HorizontalTextAlignment="Center" 
                    HorizontalOptions="Center" 

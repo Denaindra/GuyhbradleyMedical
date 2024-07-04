@@ -8,7 +8,7 @@
     FlyoutIcon="menu.png"
     Title="Hampton Clinical">
     <Shell.FlyoutHeader>
-        <controls:FlyoutHeader />
+        <controls:FlyoutHeader x:Name="profilerPage" />
     </Shell.FlyoutHeader>
     <FlyoutItem x:Name="MainFlyout" Title="Tests" Icon="tests.png">
         <Tab Title="HomeTabText" Icon="tab_home.png">
