@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiDotNET8.Screens"
+    xmlns:nestedLocal="clr-namespace:MauiDotNET8.Screens.UrineProtein"
     xmlns:controls="clr-namespace:MauiDotNET8.Controls"
     FlyoutIcon="menu.png"
+    Shell.TabBarIsVisible="False"
     Title="Hampton Clinical">
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader x:Name="profilerPage" />
@@ -18,9 +20,9 @@
             <ShellContent ContentTemplate="{DataTemplate local:BloodPressurePage}" />
         </Tab>
         <Tab Title="UrineTabText" Icon="tab_urine.png" Route="urineprotein">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent ContentTemplate="{DataTemplate nestedLocal:UrineProteinPage}" />
         </Tab>
     </FlyoutItem>
-    <MenuItem Text="FAQ's" IconImageSource="tab_faq.png" Clicked="MenuItem_Clicked" />
+    <MenuItem Text="FAQ's" IconImageSource="tab_faq.png" Clicked="FaqItemClicked" />
     <MenuItem Text="Sign Out" IconImageSource="logout.png" Clicked="MenuItemLogoutClicked" />
 </Shell>

@@ -20,12 +20,14 @@ namespace MauiDotNET8.ViewModels
     {
         private readonly IB2CAuthenticationService authenticationService;
         private readonly AppShell appShell;
+        private readonly FAQPage fAQPage;
 
         private bool isRunning;
-        public UserViewModal(IB2CAuthenticationService authenticationService, AppShell appShell)
+        public UserViewModal(IB2CAuthenticationService authenticationService, AppShell appShell,FAQPage fAQPage)
         {
             this.authenticationService = authenticationService;
             this.appShell = appShell;
+            this.fAQPage = fAQPage;
         }
 
 
@@ -113,6 +115,11 @@ namespace MauiDotNET8.ViewModels
 
             }
             return string.Empty;
+        }
+
+        public void NavigateToFAQPage()
+        {
+            navigation.PushAsync(fAQPage);
         }
     }
 }

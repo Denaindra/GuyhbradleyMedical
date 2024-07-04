@@ -8,6 +8,6 @@ namespace MauiDotNET8
 {
     public static class AppConstant
     {
-        
+        public static INavigation navigation;
     }
 }

@@ -6,4 +6,10 @@ public partial class FAQPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        FAQWebview.Source = "https://www.trakkaclinical.com/faq.html";
+    }
 }

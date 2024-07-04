@@ -1,4 +1,6 @@
 ﻿using MauiDotNET8.Helpers;
+using MauiDotNET8.Screens;
+using MauiDotNET8.Screens.UrineProtein;
 using MauiDotNET8.ViewModels;
 
 namespace MauiDotNET8
@@ -11,17 +13,23 @@ namespace MauiDotNET8
         {
             InitializeComponent();
             label = (Label)profilerPage.FindByName("patientNameLabel");
+            Routing.RegisterRoute("addbloodpressure", typeof(AddBloodPressureTestPage));
+            Routing.RegisterRoute("addurineprotein", typeof(AddUrineProteinTestPage));
+            Routing.RegisterRoute("home", typeof(HomePage));
+            Routing.RegisterRoute("faq", typeof(FAQPage));
+            MainFlyout.IsEnabled = true;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             vm = ServiceHelper.GetService<UserViewModal>();
+            vm.navigation = Navigation;
             label.Text = await vm.GetLoginedUser();
         }
-        private void MenuItem_Clicked(object sender, EventArgs e)
+        private void FaqItemClicked(object sender, EventArgs e)
         {
-
+           vm.NavigateToFAQPage();
         }
 
         private async void MenuItemLogoutClicked(object sender, EventArgs e)

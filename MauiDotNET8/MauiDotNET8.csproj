@@ -117,10 +117,16 @@
 	  <MauiXaml Update="Screens\NotificationDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Screens\UrineProtein\AddUrineProteinTestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Screens\UrineProtein\UrineProteinPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <Folder Include="Screens\Popup\" />
 	</ItemGroup>
 
 </Project>

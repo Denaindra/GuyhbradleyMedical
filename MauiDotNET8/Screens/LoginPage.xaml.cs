@@ -11,6 +11,7 @@ public partial class LoginPage : ContentPage
 		this.vm = userViewModal;
 		userViewModal.navigation = Navigation;
         BindingContext = userViewModal;
+        AppConstant.navigation = Navigation;
 	}
 
     protected override void OnAppearing()
