@@ -37,14 +37,4 @@ public partial class FlyoutHeader : ContentView
     {
         vm.TakePhotoFromgallery();
     }
-    public async Task<ImageSource> LoadPhotoAsync(FileResult photo)
-    {
-        using var stream = await photo.OpenReadAsync();
-        using var memoryStream = new MemoryStream();
-        await stream.CopyToAsync(memoryStream);
-        var imageBytes = memoryStream.ToArray();
-        var newStream = new MemoryStream(imageBytes);
-        var imageSource = ImageSource.FromStream(() => newStream);
-        return imageSource;
-    }
 }

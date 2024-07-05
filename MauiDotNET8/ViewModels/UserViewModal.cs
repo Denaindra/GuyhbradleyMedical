@@ -67,15 +67,6 @@ namespace MauiDotNET8.ViewModels
             
         }
 
-        public async Task<string> GetValueFromLocalStorage(string key)
-        {
-            var value = await SecureStorage.Default.GetAsync("login"); 
-            if (string.IsNullOrEmpty(value))
-            {
-                return string.Empty;
-            }
-            return value;
-        }
         public async void LogoutSignOut()
         {
             try

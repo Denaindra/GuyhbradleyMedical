@@ -50,6 +50,10 @@ namespace MauiDotNET8.Utilities
             using var memoryStream = new MemoryStream();
             await stream.CopyToAsync(memoryStream);
             var imageBytes = memoryStream.ToArray();
+
+            var loginUser = await SecureStorage.Default.GetAsync("userIdentifer");
+            await SecureStorage.Default.SetAsync($"{loginUser}.png", Convert.ToBase64String(imageBytes));
+
             var newStream = new MemoryStream(imageBytes);
             var imageSource = ImageSource.FromStream(() => newStream);
             return imageSource;
