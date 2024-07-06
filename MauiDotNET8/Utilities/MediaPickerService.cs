@@ -7,6 +7,12 @@ namespace MauiDotNET8.Utilities
     public class MediaPickerService: IMediaPickerService
     {
         private ImageSource imageSource;
+        private readonly IAzureCloudStorageUtility azureCloudStorageUtility;
+
+        public MediaPickerService(IAzureCloudStorageUtility azureCloudStorageUtility)
+        {
+            this.azureCloudStorageUtility = azureCloudStorageUtility;
+        }
         public async Task<ImageSource> TakePhotoFromgallery()
         {
             try
@@ -32,7 +38,7 @@ namespace MauiDotNET8.Utilities
             try
             {
                 var photo = await MediaPicker.CapturePhotoAsync();
-                imageSource = await LoadPhotoAsync(photo);
+                var imageSource = await LoadPhotoAsync(photo);
                 if (imageSource != null)
                 {
                     return imageSource;
@@ -46,17 +52,20 @@ namespace MauiDotNET8.Utilities
         }
         public async Task<ImageSource> LoadPhotoAsync(FileResult photo)
         {
-            using var stream = await photo.OpenReadAsync();
-            using var memoryStream = new MemoryStream();
-            await stream.CopyToAsync(memoryStream);
-            var imageBytes = memoryStream.ToArray();
+            byte[] imageBytes;
+            using (var stream = await photo.OpenReadAsync())
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                imageBytes = memoryStream.ToArray();
 
-            var loginUser = await SecureStorage.Default.GetAsync("userIdentifer");
-            await SecureStorage.Default.SetAsync($"{loginUser}.png", Convert.ToBase64String(imageBytes));
+                var loginUser = await SecureStorage.Default.GetAsync("userIdentifer");
+                await SecureStorage.Default.SetAsync($"{loginUser}.png", Convert.ToBase64String(imageBytes));
 
-            var newStream = new MemoryStream(imageBytes);
-            var imageSource = ImageSource.FromStream(() => newStream);
-            return imageSource;
+               // using var newStream = new MemoryStream(imageBytes);
+                var results = await azureCloudStorageUtility.UploadBob($"{loginUser}.png", memoryStream);
+            }
+            return ImageSource.FromStream(() => new MemoryStream(imageBytes));
         }
     }
 }

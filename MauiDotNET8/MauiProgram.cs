@@ -57,6 +57,7 @@ namespace MauiDotNET8
             builder.Services.AddSingleton<ILoading, Loading>();
             builder.Services.AddSingleton<IMediaPickerService, MediaPickerService>();
             builder.Services.AddSingleton<IB2CAuthenticationService, B2CAuthenticationService>();
+            builder.Services.AddSingleton<IAzureCloudStorageUtility, AzureCloudStorageUtility>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

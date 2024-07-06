@@ -12,6 +12,7 @@ namespace MauiDotNET8.ViewModels
     public class FlyoutHeaderViewModel : BaseViewModel
     {
         private readonly IMediaPickerService mediaPickerService;
+        
         private ImageSource mediaSource;
 
         public FlyoutHeaderViewModel(IMediaPickerService mediaPickerService)
