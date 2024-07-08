@@ -9,5 +9,6 @@ namespace MauiDotNET8.Interface
     public interface IAzureCloudStorageUtility
     {
         Task<bool> UploadBob(string blobName, Stream stream);
+        string GetClinicLogoPictureURL(string clinicLogoPictureFileName);
     }
 }

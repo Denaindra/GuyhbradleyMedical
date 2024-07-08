@@ -7,7 +7,6 @@
     xmlns:nestedLocal="clr-namespace:MauiDotNET8.Screens.UrineProtein"
     xmlns:controls="clr-namespace:MauiDotNET8.Controls"
     FlyoutIcon="menu.png"
-    Shell.TabBarIsVisible="False"
     Title="Hampton Clinical">
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader x:Name="profilerPage" />

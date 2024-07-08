@@ -51,12 +51,13 @@ namespace MauiDotNET8.ViewModels
         {
             try
             {
-                IsRunning = true;
-                var userContext = await authenticationService.SignInInteractively();
-                if (!string.IsNullOrEmpty(userContext.AccessToken))
+                //IsRunning = true;
+                //var userContext = await authenticationService.SignInInteractively();
+                //if (!string.IsNullOrEmpty(userContext.AccessToken))
                 {
-                    IsRunning = false;
-                    await SecureStorage.Default.SetAsync("login", string.Format("{0} {1}", userContext.GivenName, userContext.FamilyName));
+                //    IsRunning = false;
+                //    await SecureStorage.Default.SetAsync("login", string.Format("{0} {1}", userContext.GivenName, userContext.FamilyName));
+                //    await SecureStorage.Default.SetAsync("clinicIdentifier", userContext.ClinicIdentifier);
                     Application.Current.MainPage = this.appShell;
                 }
             }

@@ -56,4 +56,9 @@
     <Color x:Key="NavigationTextColor">Gainsboro</Color>
     <Color x:Key="NavigationSelectedTabTextColor">White</Color>
     <Color x:Key="NavigationTitleTextColor">White</Color>
+
+    <!-- Light Background Gradient -->
+    <Color x:Key="NavigationBackgroundGradientFirstColor">Azure</Color>
+    <Color x:Key="NavigationBackgroundGradientSecondColor">#DFECF1</Color>
+    
 </ResourceDictionary>

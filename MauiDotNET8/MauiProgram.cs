@@ -52,6 +52,7 @@ namespace MauiDotNET8
             builder.Services.AddTransient<MainPageViewModel>();
             builder.Services.AddTransient<FlyoutHeaderViewModel>();
             builder.Services.AddTransient<UserViewModal>();
+            builder.Services.AddTransient<HomePageViewModel>();
 
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();

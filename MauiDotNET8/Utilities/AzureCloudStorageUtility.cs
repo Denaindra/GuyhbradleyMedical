@@ -36,5 +36,9 @@ namespace MauiDotNET8.Utilities
                 return false;
             }
         }
+        public string GetClinicLogoPictureURL(string clinicLogoPictureFileName)
+        {
+            return string.Format("{0}/{1}/{2}", "https://trakkaclinical.blob.core.windows.net", "clinic-logos", clinicLogoPictureFileName);
+        }
     }
 }
