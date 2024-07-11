@@ -60,5 +60,19 @@
     <!-- Light Background Gradient -->
     <Color x:Key="NavigationBackgroundGradientFirstColor">Azure</Color>
     <Color x:Key="NavigationBackgroundGradientSecondColor">#DFECF1</Color>
-    
+
+
+    <Color x:Key="ResponseAlertColor">Red</Color>
+    <Color x:Key="ResponseWarningColor">Orange</Color>
+    <Color x:Key="ResponseOkColor">LimeGreen</Color>
+    <Color x:Key="ResponseAlertBackgroundColor">Red</Color>
+    <Color x:Key="ResponseWarningBackgroundColor">Orange</Color>
+    <Color x:Key="ResponseOkBackgroundColor">White</Color>
+    <Color x:Key="ResponseAlertBorderColor">Red</Color>
+    <Color x:Key="ResponseWarningBorderColor">Orange</Color>
+    <Color x:Key="ResponseOkBorderColor">White</Color>
+    <Color x:Key="ResponseAlertForegroundColor">White</Color>
+    <Color x:Key="ResponseWarningForegroundColor">White</Color>
+    <Color x:Key="ResponseOkForegroundColor">Black</Color>
+
 </ResourceDictionary>

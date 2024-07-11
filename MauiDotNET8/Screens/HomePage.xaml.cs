@@ -17,13 +17,13 @@ public partial class HomePage : ContentPage
          await vm.GetClinicLogo();
     }
 
-    private void BloodPressureBtnClicked(object sender, EventArgs e)
+    private async void BloodPressureBtnClicked(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("//bloodpressure");
     }
 
-    private void UrineProteinBtnClicked(object sender, EventArgs e)
+    private async void UrineProteinBtnClicked(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("//urineprotein");
     }
 }
