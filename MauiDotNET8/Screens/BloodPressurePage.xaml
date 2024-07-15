@@ -142,14 +142,14 @@
                         <controls:DummyTests/>
                     </shimmer:SfShimmer.CustomView>
                     <shimmer:SfShimmer.Content>
-                        <syncfusion:SfPullToRefresh  x:Name="pullToRefresh"
+                        <syncfusion:SfPullToRefresh  x:Name="pullToRefresh" Refreshing="PullToRefreshRefreshing"
                                                       ProgressColor="Gray"
                                                       BackgroundColor="WhiteSmoke"
                                                       PullingThreshold="150" 
                                                        RefreshViewThreshold="50" TransitionMode="Push"
                                                       IsRefreshing="False">
                             <syncfusion:SfPullToRefresh.PullableContent>
-                                <syncfusionList:SfListView x:Name="bloodPressureListView" ItemsSource="{Binding BloodPressureTestAndResponses}" SelectionMode="Single"                                                   Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
+                                <syncfusionList:SfListView x:Name="bloodPressureListView" SelectionChanging="BloodPressureListViewSelectionChanging" ItemsSource="{Binding BloodPressureTestAndResponses}" SelectionMode="Single" Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
                                     <syncfusionList:SfListView.ItemTemplate>
                                         <DataTemplate>
                                             <local:BloodPressureCell />

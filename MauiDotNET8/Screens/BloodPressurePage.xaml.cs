@@ -1,4 +1,5 @@
 using MauiDotNET8.ViewModels;
+using Syncfusion.Maui.Charts;
 
 namespace MauiDotNET8.Screens;
 
@@ -14,11 +15,24 @@ public partial class BloodPressurePage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        var results = await vm.GetBloodPressureTests();
+        await vm.GetBloodPressureTests();
     }
 
     private async void AddBtnClick(object sender, EventArgs e)
     {
        
+    }
+
+    private async void PullToRefreshRefreshing(object sender, EventArgs e)
+    {
+        pullToRefresh.IsRefreshing = true;
+        await vm.GetBloodPressureTests();
+        pullToRefresh.IsRefreshing = false;
+    }
+
+    private void BloodPressureListViewSelectionChanging(object sender, Syncfusion.Maui.ListView.ItemSelectionChangingEventArgs e)
+    {
+       // var index = (bloodPressureListView.ItemsSource as IList<BloodPressureTestAndResponse>).IndexOf(e.AddedItems[0] as BloodPressureTestAndResponse);
+       // splineSeries.SelectedDataPointIndex = index;
     }
 }
