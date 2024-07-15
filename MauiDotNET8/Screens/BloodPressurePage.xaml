@@ -2,11 +2,184 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiDotNET8.Screens.BloodPressurePage"
-             Title="BloodPressurePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:shimmer="clr-namespace:Syncfusion.Maui.Shimmer;assembly=Syncfusion.Maui.Core"
+             xmlns:converters="clr-namespace:MauiDotNET8.Converters"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PullToRefresh;assembly=Syncfusion.Maui.PullToRefresh"
+             xmlns:syncfusionList="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:controls="clr-namespace:MauiDotNET8.CustomViews.Controls"
+             xmlns:local="clr-namespace:MauiDotNET8.DataTemplates"
+             Title="Your Blood Pressure">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ReverseBooleanConverter x:Key="BooleanInverter" />
+            <converters:ResponseLevelColorConverter x:Key="ResponseLevelColourFormatter" />
+            <converters:DateTimeToStringConverter x:Key="DateTimeToStringFormatter" />
+            <converters:ResponseLevelForegoundColorConverter x:Key="ResponseLevelForegroundColourFormatter" />
+            <converters:ResponseLevelBackgroundColorConverter x:Key="ResponseLevelBackgroundColourFormatter" />
+            <converters:ResponseLevelBorderColorConverter x:Key="ResponseLevelBorderColourFormatter" />
+            <converters:FrequencyStringConverter x:Key="FrequencyStringFormatter" />
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+            <converters:FrequencyVisibilityConverter x:Key="FrequencyVisibilityConverter" />
+            <converters:ResponseLevelAlertAndWarningVisibilityConverter x:Key="ResponseLevelAlertAndWarningVisibilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStopCollection>
+                    <GradientStop Color="Azure" Offset="0.0" />
+                    <GradientStop Color="#DFECF1" Offset="1.1" />   <!--1.0-->
+                </GradientStopCollection>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Text="Summary: " FontSize="16"  Grid.Row="0" Margin="20,10,20,0"/>
+                <shimmer:SfShimmer x:Name="shimmerChart" Grid.Row="1" IsActive="{Binding IsBusy}"
+                                  WaveColor="{StaticResource ShimmerWaveColor}"
+                                  WaveWidth ="{StaticResource ShimmerWaveWidth}" >
+                    <!--<shimmer:SfShimmer.CustomView>
+                        <Frame CornerRadius="10" Margin="20,10,20,10" HasShadow="False" Padding="0,10,10,5">
+                            <chart:SfChart x:Name="fakeBloodPressureChart">
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis>
+                                        <chart:NumericalAxis.LabelStyle>
+                                            <chart:ChartAxisLabelStyle Font="0.01"/>
+                                        </chart:NumericalAxis.LabelStyle>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis >
+                                        <chart:NumericalAxis.LabelStyle>
+                                            <chart:ChartAxisLabelStyle Font="0.01"/>
+                                        </chart:NumericalAxis.LabelStyle>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+                            </chart:SfChart>
+                        </Frame>
+                    </shimmer:SfShimmer.CustomView>-->
+                    <shimmer:SfShimmer.Content>
+                        <Frame CornerRadius="10" Margin="20,10,20,10" HasShadow="False" Padding="0,10,10,5">
+                            <!--<chart:SfChart x:Name="bloodPressureChart" TrackballCreated="bloodPressureChart_TrackballCreated">
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:DateTimeAxis x:Name="dateTimeAxis" LabelCreated="dateTimeAxis_LabelCreated">
+                                        <chart:DateTimeAxis.LabelStyle>
+                                            <chart:ChartAxisLabelStyle LabelFormat="dd/MM/yyyy"/>
+                                        </chart:DateTimeAxis.LabelStyle>
+                                    </chart:DateTimeAxis>
+                                </chart:SfChart.PrimaryAxis>
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+                                <chart:SfChart.Series>
+                                    <chart:SplineRangeAreaSeries x:Name="splineSeries" ItemsSource="{Binding BloodPressureTestAndResponses}" XBindingPath="TestDateTimeLocal" High="Systolic" Low="Diastolic"
+                                                                EnableTooltip="False" EnableDataPointSelection="True" DataMarkerLabelCreated="splineSeries_DataMarkerLabelCreated" SplineType="Monotonic">
+                                        <chart:SplineRangeAreaSeries.DataMarker>
+                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="True" MarkerType="Square" MarkerWidth="6" MarkerHeight="6" MarkerColor="WhiteSmoke" MarkerBorderColor="Gold" MarkerBorderWidth="1"  />
+                                        </chart:SplineRangeAreaSeries.DataMarker>
+                                        <chart:SplineRangeAreaSeries.TooltipTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Vertical">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Date :" />
+                                                        <Label Text="{Binding TestDateTimeUTC}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Diastolic :" />
+                                                        <Label Text="{Binding Diastolic}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Systolic   :" />
+                                                        <Label Text="{Binding Systolic}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Id :" />
+                                                        <Label Text="{Binding Id}"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </chart:SplineRangeAreaSeries.TooltipTemplate>
+                                    </chart:SplineRangeAreaSeries>
+                                </chart:SfChart.Series>
+                                <chart:SfChart.ChartBehaviors>
+                                    <chart:ChartTrackballBehavior ShowLabel="True" ShowLine="True"/>
+                                </chart:SfChart.ChartBehaviors>
+                            </chart:SfChart>-->
+                        </Frame>
+                    </shimmer:SfShimmer.Content>
+                </shimmer:SfShimmer>
+            </Grid>
+            <StackLayout Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" >
+                <Border BackgroundColor="White"  Margin="20,10,20,10" Padding="10" IsVisible="{Binding HasNoBloodPressureTests}">
+                    <StackLayout>
+                        <Label Text="You have no Blood Pressure Tests to display." HorizontalTextAlignment="Center"/>
+                        <Label Text="Please use the Add+ button below to record your first Blood Pressure Test reading."  HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Border>
+                <shimmer:SfShimmer x:Name="shimmerListView" IsActive="{Binding IsBusy}" VerticalOptions="FillAndExpand"
+                                  WaveColor="WhiteSmoke"
+                                  WaveWidth ="50" >
+                    <shimmer:SfShimmer.CustomView>
+                        <controls:DummyTests/>
+                    </shimmer:SfShimmer.CustomView>
+                    <shimmer:SfShimmer.Content>
+                        <syncfusion:SfPullToRefresh  x:Name="pullToRefresh"
+                                                      ProgressColor="Gray"
+                                                      BackgroundColor="WhiteSmoke"
+                                                      PullingThreshold="150" 
+                                                       RefreshViewThreshold="50" TransitionMode="Push"
+                                                      IsRefreshing="False">
+                            <syncfusion:SfPullToRefresh.PullableContent>
+                                <syncfusionList:SfListView x:Name="bloodPressureListView" ItemsSource="{Binding BloodPressureTestAndResponses}" SelectionMode="Single"                                                   Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
+                                    <syncfusionList:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:BloodPressureCell />
+                                        </DataTemplate>
+                                    </syncfusionList:SfListView.ItemTemplate>
+                                    <syncfusionList:SfListView.SelectedItemTemplate>
+                                        <DataTemplate>
+                                            <local:BloodPressureSelectedCell />
+                                        </DataTemplate>
+                                    </syncfusionList:SfListView.SelectedItemTemplate>
+                                </syncfusionList:SfListView>
+                            </syncfusion:SfPullToRefresh.PullableContent>
+                        </syncfusion:SfPullToRefresh>
+                    </shimmer:SfShimmer.Content>
+                </shimmer:SfShimmer>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1" >
+                <buttons:SfButton Text="Add +" WidthRequest="80" HeightRequest="80" CornerRadius="40" HorizontalOptions="End" Clicked="AddBtnClick"
+                   Margin="25" Stroke="White" BackgroundColor="{StaticResource Primary}"
+                                 IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanInverter}}" >
+                    <buttons:SfButton.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStopCollection>
+                                <GradientStop Color="#F86C6A" Offset="0" />
+                                <GradientStop Color="#FD5592" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush>
+                    </buttons:SfButton.Background>
+                </buttons:SfButton>
+            </StackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

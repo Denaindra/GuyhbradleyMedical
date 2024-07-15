@@ -10,6 +10,15 @@
     <MauiXaml Update="Controls\FlyoutHeader.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="CustomViews\Controls\DummyTests.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="DataTemplates\BloodPressureCell.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="DataTemplates\BloodPressureSelectedCell.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Screens\AboutPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MauiDotNET8.Interface.API;
+using Refit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace MauiDotNET8.ViewModels.Base
 
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private static IBloodPressure ibloodPressure;
         public INavigation navigation;
 
         bool isBusy = false;
@@ -82,6 +85,15 @@ namespace MauiDotNET8.ViewModels.Base
         public async void PopToRootAsync()
         {
             await navigation.PopToRootAsync();
+        }
+
+        public IBloodPressure GetTrakkaclinicalAPI()
+        {
+            if (ibloodPressure is null)
+            {
+                ibloodPressure = RestService.For<IBloodPressure>("https://mobile-api.trakkaclinical.com");
+            }
+            return ibloodPressure;
         }
 
         #region INotifyPropertyChanged

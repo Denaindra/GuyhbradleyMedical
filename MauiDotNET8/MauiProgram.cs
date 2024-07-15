@@ -5,6 +5,7 @@ using MauiDotNET8.Utilities;
 using MauiDotNET8.Utilities.Auth;
 using MauiDotNET8.ViewModels;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace MauiDotNET8
 {
@@ -35,7 +36,7 @@ namespace MauiDotNET8
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                }).ConfigureSyncfusionCore();
             //Views
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<AboutPage>();
@@ -53,6 +54,7 @@ namespace MauiDotNET8
             builder.Services.AddTransient<FlyoutHeaderViewModel>();
             builder.Services.AddTransient<UserViewModal>();
             builder.Services.AddTransient<HomePageViewModel>();
+            builder.Services.AddTransient<BloodPressureViewModel>();
 
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();

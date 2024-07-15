@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:converters="clr-namespace:MauiDotNET8.Converters"
+             x:Class="MauiDotNET8.DataTemplates.BloodPressureSelectedCell">
+    <ViewCell.View>
+        <Border StrokeThickness="1" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White" Stroke="Gray">
+            <Grid Margin="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="4.8*"/>
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary>
+                            <converters:ReverseBooleanConverter x:Key="BooleanInverter" />
+                            <converters:ResponseLevelColorConverter x:Key="ResponseLevelColourFormatter" />
+                            <converters:DateTimeToStringConverter x:Key="DateTimeToStringFormatter" />
+                            <converters:ResponseLevelForegoundColorConverter x:Key="ResponseLevelForegroundColourFormatter" />
+                            <converters:ResponseLevelBackgroundColorConverter x:Key="ResponseLevelBackgroundColourFormatter" />
+                            <converters:ResponseLevelBorderColorConverter x:Key="ResponseLevelBorderColourFormatter" />
+                            <converters:FrequencyStringConverter x:Key="FrequencyStringFormatter" />
+                            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+                            <converters:FrequencyVisibilityConverter x:Key="FrequencyVisibilityConverter" />
+                            <converters:ResponseLevelAlertAndWarningVisibilityConverter x:Key="ResponseLevelAlertAndWarningVisibilityConverter" />
+                        </ResourceDictionary>
+                    </ResourceDictionary>
+                </Grid.Resources>
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource ResponseLevelColourFormatter}}" Margin="0" />
+                <Grid Grid.Row="0" Grid.Column="1" RowSpacing="0"  Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Systolic" Grid.Row="0" Grid.Column="0"  TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Diastolic" Grid.Row="0" Grid.Column="2" TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
+                    <Border Grid.Row="1" Grid.Column="0" StrokeShape="RoundRectangle 5,5,5,5" StrokeThickness="1" Padding="2,0,2,0"
+                                                                      Stroke="{Binding SystolicResponse, Converter={StaticResource ResponseLevelBorderColourFormatter},Mode=OneWay} "
+                                                                      BackgroundColor="{Binding SystolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter},Mode=OneWay}"
+                                                                      HorizontalOptions="Center">
+                        <Label Text="{Binding Systolic}"  Style="{StaticResource BloodPressureLabelStyle}"
+                                                            TextColor="{Binding SystolicResponse, Converter={StaticResource ResponseLevelForegroundColourFormatter}}"
+                                                            HorizontalOptions="Center"
+                                                            LineBreakMode="TailTruncation"/>
+                    </Border>
+                    <Label Text="/" Grid.Row="1"  Grid.Column="1"  Style="{StaticResource BloodPressureLabelStyle}" HorizontalOptions="Center"/>
+                    <Border Grid.Row="1" Grid.Column="2" StrokeShape="RoundRectangle 5,5,5,5" StrokeThickness="1" Padding="2,0,2,0"
+                                                                      Stroke="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelBorderColourFormatter},Mode=OneWay}"
+                                                                      BackgroundColor="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}"
+                                                                      HorizontalOptions="Center">
+                        <Label Text="{Binding Diastolic}" Style="{StaticResource BloodPressureLabelStyle}"
+                                                                TextColor="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelForegroundColourFormatter}}"
+                                                                HorizontalOptions="Center"
+                                                                LineBreakMode="TailTruncation" />
+                    </Border>
+                    <Label Text="mm Hg" Grid.Row="2" Grid.Column="0"  TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="mm Hg" Grid.Row="2" Grid.Column="2"  TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
+                </Grid>
+                <StackLayout Grid.Row="0" Grid.Column="2"  Margin="0,10,10,0">
+                    <!-- Date and Time formatted using a converter -->
+                    <Label Text="{Binding TestDateTimeUTC, Converter={StaticResource DateTimeToStringFormatter}}" TextColor="DarkGray" FontSize="14" HorizontalOptions="EndAndExpand"/>
+                    <!-- Headache Border -->
+                    <Border Style="{StaticResource FrequencyBorderStyle}"
+                                                                     Stroke="{Binding HeadachesResponse, Converter={StaticResource ResponseLevelBorderColourFormatter},Mode=OneWay}"
+                                                                     BackgroundColor="{Binding HeadachesResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}"
+                                                                     IsVisible="{Binding Headaches, Converter={StaticResource FrequencyVisibilityConverter }}">
+                        <!-- Headache Label -->
+                        <Label Style="{StaticResource FrequencyLabelStyle}"
+                                                                     Text="{Binding Headaches, Converter={StaticResource FrequencyStringFormatter}, ConverterParameter='Headaches'}"
+                                                                     TextColor = "{Binding HeadachesResponse, Converter={StaticResource ResponseLevelForegroundColourFormatter}}" />
+                    </Border>
+                    <!-- End Headache Border -->
+                    <!-- Blurred Vision Border -->
+                    <Border Style="{StaticResource FrequencyBorderStyle}"
+                                                                     Stroke="{Binding BlurredVisionResponse, Converter={StaticResource ResponseLevelBorderColourFormatter},Mode=OneWay}"
+                                                                     BackgroundColor="{Binding BlurredVisionResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}"
+                                                                     IsVisible="{Binding BlurredVision, Converter={StaticResource FrequencyVisibilityConverter }}">
+                        <!-- Blurred Vision Label -->
+                        <Label Style="{StaticResource FrequencyLabelStyle}"
+                                                                     Text="{Binding BlurredVision, Converter={StaticResource FrequencyStringFormatter}, ConverterParameter='Blurred Vision'}"
+                                                                     TextColor = "{Binding BlurredVisionResponse, Converter={StaticResource ResponseLevelForegroundColourFormatter}}"/>
+                    </Border>
+                    <!-- End Blurred Vision Border -->
+                    <!-- Abdominal Pains Border -->
+                    <Border Style="{StaticResource FrequencyBorderStyle}"
+                                                                      Stroke="{Binding AbdominalPainResponse, Converter={StaticResource ResponseLevelBorderColourFormatter},Mode=OneWay}"
+                                                                      BackgroundColor="{Binding AbdominalPainResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}"
+                                                                      IsVisible="{Binding AbdominalPain, Converter={StaticResource FrequencyVisibilityConverter }}">
+                        <!-- Abdominal Pains Label -->
+                        <Label Style="{StaticResource FrequencyLabelStyle}"
+                                                                     Text="{Binding AbdominalPain, Converter={StaticResource FrequencyStringFormatter}, ConverterParameter='Abdominal Pain'}"
+                                                                     TextColor = "{Binding AbdominalPainResponse, Converter={StaticResource ResponseLevelForegroundColourFormatter}}"/>
+                    </Border>
+                    <!-- End Abdominal Pains Border -->
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Status}" Padding="10,0,10,10" Margin="0">
+                    <!-- Systolic Response Message -->
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding SystolicResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
+                        <Label Text="{Binding SystolicResponseMessage}" TextColor="{Binding SystolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                    </StackLayout>
+                    <!-- Diastolic Response Message -->
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
+                        <Label Text="{Binding DiastolicResponseMessage}" TextColor="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                    </StackLayout>
+                    <!-- Headaches Response Message -->
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding HeadachesResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
+                        <Label Text="{Binding HeadachesResponseMessage}" TextColor="{Binding HeadachesResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                    </StackLayout>
+                    <!-- Blurred Vision Response Message -->
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding BlurredVisionResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
+                        <Label Text="{Binding BlurredVisionResponseMessage}" TextColor="{Binding BlurredVisionResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                    </StackLayout>
+                    <!-- Abdominal Pains Response Message -->
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding AbdominalPainResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
+                        <Label Text="{Binding AbdominalPainResponseMessage}" TextColor="{Binding AbdominalPainResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Border>
+    </ViewCell.View>
+</ViewCell>

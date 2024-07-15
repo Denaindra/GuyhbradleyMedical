@@ -8,7 +8,7 @@ namespace MauiDotNET8.Helpers
     {
         public static Color GetResourcesValue(string key)
         {
-            if (Application.Current.Resources.TryGetValue("Primary", out var colorVal)) { }
+            if (Application.Current.Resources.TryGetValue(key, out var colorVal)) { }
             return (Color)colorVal;
         }
     }
