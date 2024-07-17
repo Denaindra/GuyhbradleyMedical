@@ -1,6 +1,10 @@
-﻿using Controls.UserDialogs.Maui;
+﻿using CommunityToolkit.Maui;
+using Controls.UserDialogs.Maui;
+using MauiDotNET8.Effects;
 using MauiDotNET8.Interface;
 using MauiDotNET8.Screens;
+using MauiDotNET8.Screens.PopupNotify;
+using MauiDotNET8.Screens.PopupViews;
 using MauiDotNET8.Utilities;
 using MauiDotNET8.Utilities.Auth;
 using MauiDotNET8.ViewModels;
@@ -16,6 +20,15 @@ namespace MauiDotNET8
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                   .ConfigureMauiHandlers((handlers) =>
+                   {
+#if ANDROID
+                      handlers.AddHandler(typeof(EntryLineColorEffect), typeof(MauiDotNET8.Platforms.Android.Effects.EntryLineColorEffect));
+
+                     //  handlers.AddHandler(typeof(EntryLineColorEffect), typeof(MauiDotNET8));
+#endif
+                   })
                 .UseUserDialogs(true, () =>
                 {
 #if ANDROID
@@ -40,7 +53,6 @@ namespace MauiDotNET8
             //Views
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<AboutPage>();
-            builder.Services.AddTransient<AddBloodPressureTestPage>();
             builder.Services.AddTransient<BloodPressurePage>();
             builder.Services.AddTransient<FAQPage>();
             builder.Services.AddTransient<HomePage>();
@@ -55,6 +67,7 @@ namespace MauiDotNET8
             builder.Services.AddTransient<UserViewModal>();
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<BloodPressureViewModel>();
+            builder.Services.AddTransient<AddBloodPressureTestViewModel>();
 
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();

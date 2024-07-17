@@ -13,4 +13,19 @@ namespace MauiDotNET8.CustomViews.Controls
             
         }
     }
+
+    public class BlackUnderlineEntry : Entry
+    {
+        public BlackUnderlineEntry()
+        {
+            
+        }
+    }
+    public class RedUnderlineEntry : Entry
+    {
+        public RedUnderlineEntry()
+        {
+            
+        }
+    }
 }

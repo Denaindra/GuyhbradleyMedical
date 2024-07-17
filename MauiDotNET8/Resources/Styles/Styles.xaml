@@ -468,8 +468,8 @@
         <Setter Property="Opacity" Value="0.6" />
         
 
-        <Setter Property="behaviors:LineColorBehavior.ApplyLineColor" Value="True" />
-        <Setter Property="behaviors:LineColorBehavior.LineColor" Value="{StaticResource BlackColor}" />
+        <!--<Setter Property="behaviors:LineColorBehavior.ApplyLineColor" Value="True" />
+        <Setter Property="behaviors:LineColorBehavior.LineColor" Value="{StaticResource BlackColor}" />-->
         <Style.Triggers>
             <Trigger TargetType="Entry" Property="IsFocused" Value="True">
                 <Setter Property="Opacity" Value="1" />

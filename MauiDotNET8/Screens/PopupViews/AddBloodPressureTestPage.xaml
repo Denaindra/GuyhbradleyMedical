@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:underline="clr-namespace:MauiDotNET8.CustomViews.Controls"
+               xmlns:behaviors="clr-namespace:MauiDotNET8.Behavior"
+               xmlns:converters="clr-namespace:MauiDotNET8.Converters"
+               CanBeDismissedByTappingOutsideOfPopup = "False"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiDotNET8.Screens.PopupViews.AddBloodPressureTestPage">
+    <toolkit:Popup.Resources>
+        <ResourceDictionary>
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </toolkit:Popup.Resources>
+    <StackLayout WidthRequest="350" BackgroundColor="White" Spacing="15"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame BorderColor="White" BackgroundColor="White" VerticalOptions="End" Padding="10">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"  Margin="0,0,0,10">
+                    <Label Text="Add Your Blood Pressure Details" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Cancel" TextColor="{StaticResource Primary}" HorizontalOptions="End" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CancleTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <StackLayout>
+                    <Grid ColumnSpacing="20" RowSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout  Orientation="Vertical"  Grid.Row="0" Grid.Column="0">
+                            <Label Text="Date:"/>
+                            <DatePicker x:Name="ResultDate"/>
+                        </StackLayout>
+                        <StackLayout  Orientation="Vertical"  Grid.Row="0" Grid.Column="1">
+                            <Label Text="Time:"/>
+                            <TimePicker x:Name="ResultTime"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Padding="0,8,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout  Orientation="Vertical"  Grid.Row="0" Grid.Column="0">
+                            <Label Text="Top Reading:"/>
+                            <StackLayout Orientation="Vertical" Spacing="2" >
+                                <underline:NoUnderlineEntry x:Name="ResultSystolic" Placeholder="Systolic" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Text="{Binding Systolic.Value, Mode=TwoWay}" TextChanged="EntryTextChanged">
+                                    <underline:NoUnderlineEntry.Style>
+                                        <OnPlatform x:TypeArguments="Style">
+                                            <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+                                        </OnPlatform>
+                                    </underline:NoUnderlineEntry.Style>
+                                    <underline:NoUnderlineEntry.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding ValidateSystolicCommand}" />
+                                    </underline:NoUnderlineEntry.Behaviors>
+                                </underline:NoUnderlineEntry>
+                                <BoxView Color="Black" HeightRequest=".5"  HorizontalOptions="FillAndExpand" >
+                                    <BoxView.Triggers>
+                                        <DataTrigger TargetType="BoxView"	Binding="{Binding Systolic.IsValid}" Value="False">
+                                            <Setter Property="Color" Value="{StaticResource ErrorColor}" />
+                                        </DataTrigger>
+                                    </BoxView.Triggers>
+                                </BoxView>
+                            </StackLayout>
+                            <Label LineBreakMode="TailTruncation" aAXSText="{Binding Systolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28" />
+                        </StackLayout>
+                        <StackLayout  Orientation="Vertical"  Grid.Row="0" Grid.Column="1">
+                            <Label Text="Bottom Reading:"/>
+                            <StackLayout Orientation="Vertical" Spacing="2" >
+                                <underline:NoUnderlineEntry x:Name="ResultDiastolic" Placeholder="Diastolic" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Text="{Binding Diastolic.Value, Mode=TwoWay}" TextChanged="EntryTextChanged">
+                                    <underline:NoUnderlineEntry.Style>
+                                        <OnPlatform x:TypeArguments="Style">
+                                            <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+                                        </OnPlatform>
+                                    </underline:NoUnderlineEntry.Style>
+                                    <underline:NoUnderlineEntry.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding ValidateDiastolicCommand}" />
+                                    </underline:NoUnderlineEntry.Behaviors>
+                                </underline:NoUnderlineEntry>
+                                <BoxView Color="Black" HeightRequest=".5"  HorizontalOptions="FillAndExpand">
+                                    <BoxView.Triggers>
+                                        <DataTrigger TargetType="BoxView"	Binding="{Binding Diastolic.IsValid}" Value="False">
+                                            <Setter Property="Color" Value="{StaticResource ErrorColor}" />
+                                        </DataTrigger>
+                                    </BoxView.Triggers>
+                                </BoxView>
+                            </StackLayout>
+                            <Label LineBreakMode="TailTruncation"  Text="{Binding Diastolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28"/>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout  Orientation="Vertical" Padding="0,5,0,5">
+                        <Label Text="Experiencing any headaches?"/>
+                        <Picker x:Name="HeadachePicker">
+                        </Picker>
+                    </StackLayout>
+                    <StackLayout  Orientation="Vertical" Padding="0,5,0,5">
+                        <Label Text="Any blurred vision?"/>
+                        <Picker  x:Name="BlurredVisionPicker">
+                        </Picker>
+                    </StackLayout>
+                    <StackLayout  Orientation="Vertical" Padding="0,5,0,5">
+                        <Label Text="Any abdominal pain?"/>
+                        <Picker  x:Name="AbdominalPainsPicker">
+                        </Picker>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout  Orientation="Vertical"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Button  x:Name="SaveResultsButton" Text="Save Your Result" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" TextColor="White" Clicked="SaveResultsButtonClicked"/>
+                    <ActivityIndicator x:Name="ActivityIndicator" IsRunning="False" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</toolkit:Popup>

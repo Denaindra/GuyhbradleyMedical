@@ -13,5 +13,11 @@ namespace MauiDotNET8.Interface.API
         [Get("/api/TestResults/BloodPressure")]
         Task<List<BloodPressureTest>> GteBloofPresureResults([AliasAs("code")] string code, [Authorize("Bearer")] string token);
 
+        [Get("/api/Clinic/MobileStartup")]
+        Task<ClinicContactModal> GteMobileServiceResults([AliasAs("code")] string code, [Authorize("Bearer")] string token);
+
+        [Post("/api/TestResults/BloodPressure")]
+        Task<Modals.API.ApiResponse<IEnumerable<TestResponse>>> PostBloodPressure([AliasAs("code")] string code, BloodPressureTest bloodPressure, [Authorize("Bearer")] string token);
+
     }
 }

@@ -6,6 +6,10 @@
     <ActiveDebugProfile>Samsung SM-E546B (Android 13.0 - API 33)</ActiveDebugProfile>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    <PlatformTarget>arm64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <MauiXaml Update="Controls\FlyoutHeader.xaml">
       <SubType>Designer</SubType>
@@ -20,9 +24,6 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Screens\AboutPage.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
-    <MauiXaml Update="Screens\AddBloodPressureTestPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Screens\BloodPressurePage.xaml">
@@ -44,6 +45,12 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Screens\NotificationDetailPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Screens\PopupNotify\AlertPopup.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Screens\PopupViews\AddBloodPressureTestPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Screens\UrineProtein\AddUrineProteinTestPage.xaml">
