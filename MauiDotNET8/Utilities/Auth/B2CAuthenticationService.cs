@@ -1,4 +1,5 @@
-﻿using MauiDotNET8.Interface;
+﻿
+using MauiDotNET8.Interface;
 using MauiDotNET8.Modals.Auth;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json.Linq;
@@ -13,7 +14,10 @@ namespace MauiDotNET8.Utilities.Auth
     public class B2CAuthenticationService : IB2CAuthenticationService
     {
         private PublicClientApplicationBuilder PublicClientApplicationBuilder;
+        private readonly string[] scopes =  { "openid", "offline_access", "https://trakkaclinical.onmicrosoft.com/02c0ba5e-08fb-4539-8399-bb725b18cfe6/TestResults.ReadWrite" };
+
         public IPublicClientApplication PublicClientApplication { get; private set; }
+
         public void IntilizedTheAppplicationBulder()
         {
             this.PublicClientApplicationBuilder = PublicClientApplicationBuilder.Create("30328afb-e743-4bdd-a261-f2c02efe2e2b")
@@ -25,8 +29,12 @@ namespace MauiDotNET8.Utilities.Auth
         }
         public async Task<UserContext> SignInInteractively()
         {
-            var scopes = new string[] { "openid", "offline_access", "https://trakkaclinical.onmicrosoft.com/02c0ba5e-08fb-4539-8399-bb725b18cfe6/TestResults.ReadWrite" };
-            IEnumerable<IAccount> accounts = await this.PublicClientApplication.GetAccountsAsync();
+            var accounts = await this.PublicClientApplication.GetAccountsAsync();
+            if (accounts.Any())
+            {
+                var result = await AcquireTokenSilent(accounts);
+                return result;
+            }
 
             AuthenticationResult results = await this.PublicClientApplication.AcquireTokenInteractive(scopes)
              .WithParentActivityOrWindow(PlatformConfig.Instance.ParentWindow)
@@ -68,7 +76,6 @@ namespace MauiDotNET8.Utilities.Auth
 
             return newContext;
         }
-
         JObject ParseIdToken(string idToken)
         {
             // Get the piece with actual user info
@@ -84,7 +91,6 @@ namespace MauiDotNET8.Utilities.Auth
             var decoded = Encoding.UTF8.GetString(byteArray, 0, byteArray.Count());
             return decoded;
         }
-
         public async Task<UserContext> SignOutInteractively()
         {
             var accounts = await this.PublicClientApplication.GetAccountsAsync();
@@ -92,6 +98,16 @@ namespace MauiDotNET8.Utilities.Auth
             var signedOutContext = new UserContext();
             signedOutContext.IsLoggedOn = false;
             return signedOutContext;
+        }
+
+        public async Task<UserContext> AcquireTokenSilent(IEnumerable<IAccount> accounts)
+        {
+            AuthenticationResult authResult = await this.PublicClientApplication.AcquireTokenSilent(scopes,accounts.LastOrDefault())
+               .WithB2CAuthority("https://trakkaclinical.b2clogin.com/tfp/trakkaclinical.onmicrosoft.com/B2C_1A_trakka_clinical_V2_signIn")
+               .ExecuteAsync();
+
+            var newContext = UpdateUserInfo(authResult);
+            return newContext;
         }
     }
 }
