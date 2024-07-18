@@ -44,6 +44,11 @@ namespace MauiDotNET8.ViewModels.Base
             }
         }
 
+        public async Task<string> GetAccessToken()
+        {
+          var result = await SecureStorage.Default.GetAsync("accessToken");
+          return result;
+        }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",

@@ -197,7 +197,7 @@ namespace MauiDotNET8.ViewModels
             try
             {
                 IsBusy = true;
-                var results = await bloodPressure.PostBloodPressure("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", bloodPressureResult, AppConstant.apptoken);
+                var results = await bloodPressure.PostBloodPressure("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", bloodPressureResult, await GetAccessToken());
                 if (results.Success)
                 {
                     TestResponses = results.Data;
@@ -314,7 +314,7 @@ namespace MauiDotNET8.ViewModels
         {
             try
             {
-                var results = await bloodPressure.GteMobileServiceResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", AppConstant.apptoken);
+                var results = await bloodPressure.GteMobileServiceResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", await GetAccessToken());
                 return results;
             }
             catch(Exception ex)

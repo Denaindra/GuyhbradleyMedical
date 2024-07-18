@@ -46,7 +46,7 @@ namespace MauiDotNET8.ViewModels
             IsBusy = true;
             try
             {
-                var bloodPressureResults = await bloodPressure.GteBloofPresureResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", AppConstant.apptoken);
+                var bloodPressureResults = await bloodPressure.GteBloofPresureResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", await GetAccessToken());
                 HasNoBloodPressureTests = bloodPressureResults.Any() == true ? false : true;
 
                 if (bloodPressureResults.Any())
