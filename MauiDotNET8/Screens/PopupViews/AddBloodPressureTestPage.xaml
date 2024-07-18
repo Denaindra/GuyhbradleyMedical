@@ -64,7 +64,7 @@
                                     </BoxView.Triggers>
                                 </BoxView>
                             </StackLayout>
-                            <Label LineBreakMode="TailTruncation" Text="{Binding Systolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28" />
+                            <Label Text="{Binding Systolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28" />
                         </StackLayout>
                         <StackLayout  Orientation="Vertical"  Grid.Row="0" Grid.Column="1">
                             <Label Text="Bottom Reading:"/>
@@ -87,7 +87,7 @@
                                     </BoxView.Triggers>
                                 </BoxView>
                             </StackLayout>
-                            <Label LineBreakMode="TailTruncation"  Text="{Binding Diastolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28"/>
+                            <Label  Text="{Binding Diastolic.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28"/>
                         </StackLayout>
                     </Grid>
                     <StackLayout  Orientation="Vertical" Padding="0,5,0,5">

@@ -478,8 +478,8 @@
     </Style>
 
     <OnPlatform x:Key="LittleSize" x:TypeArguments="x:Double">
-        <On Platform="iOS" Value="11" />
-        <On Platform="Android" Value="12" />
+        <On Platform="iOS" Value="6" />
+        <On Platform="Android" Value="9" />
     </OnPlatform>
     <OnPlatform x:Key="LargeSize" x:TypeArguments="x:Double">
         <On Platform="iOS" Value="16" />
