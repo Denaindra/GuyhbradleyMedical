@@ -23,6 +23,12 @@
     <MauiXaml Update="DataTemplates\BloodPressureSelectedCell.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="DataTemplates\UrineProteinCell.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="DataTemplates\UrineProteinSelectedCell.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Screens\AboutPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

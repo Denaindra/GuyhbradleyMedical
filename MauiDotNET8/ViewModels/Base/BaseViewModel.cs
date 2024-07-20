@@ -18,6 +18,7 @@ namespace MauiDotNET8.ViewModels.Base
     public class BaseViewModel : INotifyPropertyChanged
     {
         private static IBloodPressure ibloodPressure;
+        private static IUrineProtine iUrineProtine;
         public INavigation navigation;
 
         bool isBusy = false;
@@ -99,6 +100,15 @@ namespace MauiDotNET8.ViewModels.Base
                 ibloodPressure = RestService.For<IBloodPressure>("https://mobile-api.trakkaclinical.com");
             }
             return ibloodPressure;
+        }
+
+        public IUrineProtine GetIUrineProtinelAPI()
+        {
+            if (iUrineProtine is null)
+            {
+                iUrineProtine = RestService.For<IUrineProtine>("https://mobile-api.trakkaclinical.com");
+            }
+            return iUrineProtine;
         }
 
         #region INotifyPropertyChanged

@@ -1,12 +1,108 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shimmer="clr-namespace:Syncfusion.Maui.Shimmer;assembly=Syncfusion.Maui.Core"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PullToRefresh;assembly=Syncfusion.Maui.PullToRefresh"
+             xmlns:syncfusionList="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.PullToRefresh;assembly=Syncfusion.Maui.PullToRefresh"
+             xmlns:converters="clr-namespace:MauiDotNET8.Converters"
+             xmlns:local="clr-namespace:MauiDotNET8.DataTemplates"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="MauiDotNET8.Screens.UrineProtein.UrineProteinPage"
-             Title="UrineProteinPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Urine Protein Page">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ReverseBooleanConverter x:Key="BooleanInverter" />
+            <converters:ResponseLevelColorConverter x:Key="ResponseLevelColourFormatter" />
+            <converters:DateTimeToStringConverter x:Key="DateTimeToStringFormatter" />
+            <converters:ResponseLevelForegoundColorConverter x:Key="ResponseLevelForegroundColourFormatter" />
+            <converters:ResponseLevelBackgroundColorConverter x:Key="ResponseLevelBackgroundColourFormatter" />
+            <converters:ResponseLevelBorderColorConverter x:Key="ResponseLevelBorderColourFormatter" />
+            <converters:FrequencyStringConverter x:Key="FrequencyStringFormatter" />
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+            <converters:FrequencyVisibilityConverter x:Key="FrequencyVisibilityConverter" />
+            <converters:ResponseLevelAlertAndWarningVisibilityConverter x:Key="ResponseLevelAlertAndWarningVisibilityConverter" />
+            <converters:UrineProteinEnumConverter x:Key="UrineProteinEnumConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStopCollection>
+                    <GradientStop Color="Azure" Offset="0.0" />
+                    <GradientStop Color="#DFECF1" Offset="1.0" />
+                </GradientStopCollection>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <Label Text="Summary:" FontSize="{StaticResource SubtitleSize}"  Grid.Row="0" Margin="20,10,20,0"/>
+            </Grid>
+            <StackLayout Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" >
+                <Border  StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White"  Margin="20,10,20,10" Padding="10" IsVisible="{Binding HasNoUrineProteinTests}">
+                    <StackLayout>
+                        <Label Text="You have no Urine Protein Tests to display." HorizontalTextAlignment="Center"/>
+                        <Label Text="Please use the Add+ button below to record your first Urine Protein Test reading."  HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Border>
+                <shimmer:SfShimmer x:Name="shimmerListView" IsActive="{Binding IsBusy}" VerticalOptions="FillAndExpand"
+                                   WaveColor="{StaticResource ShimmerWaveColor}"
+                                   WaveWidth ="{StaticResource ShimmerWaveWidth}" >
+                    <shimmer:SfShimmer.CustomView>
+                        <StackLayout>
+                            <Border StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White"  Margin="20,10,20,10" HeightRequest="100" />
+                            <Border  StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White"  Margin="20,10,20,10" HeightRequest="100" />
+                            <Border StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White"  Margin="20,10,20,10" HeightRequest="100" />
+                        </StackLayout>
+                    </shimmer:SfShimmer.CustomView>
+                    <shimmer:SfShimmer.Content>
+                        <pullToRefresh:SfPullToRefresh x:Name="pullToRefresh"
+                                                       ProgressColor="{StaticResource PullToRefreshProgressStrokeColor}"
+                                                       ProgressBackground="{StaticResource PullToRefreshProgressBackgroundColor}"
+                                                       PullingThreshold="{StaticResource PullToRefreshPullingThreshold}" 
+                                                       RefreshViewHeight="50" RefreshViewWidth="50" RefreshViewThreshold="50" TransitionMode="Push"
+                                                       IsRefreshing="False">
+                            <pullToRefresh:SfPullToRefresh.PullableContent>
+                                <syncfusionList:SfListView x:Name="bloodPressureListView" ItemsSource="{Binding UrineProteinTestAndResponses}" SelectionMode="Single" Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
+                                    <syncfusionList:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:UrineProteinCell />
+                                        </DataTemplate>
+                                    </syncfusionList:SfListView.ItemTemplate>
+                                    <syncfusionList:SfListView.SelectedItemTemplate>
+                                        <DataTemplate>
+                                            <local:UrineProteinSelectedCell />
+                                        </DataTemplate>
+                                    </syncfusionList:SfListView.SelectedItemTemplate>
+                                </syncfusionList:SfListView>
+                            </pullToRefresh:SfPullToRefresh.PullableContent>
+                        </pullToRefresh:SfPullToRefresh>
+                    </shimmer:SfShimmer.Content>
+                </shimmer:SfShimmer>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1" >
+                <buttons:SfButton Text="Add +" WidthRequest="80" HeightRequest="80" CornerRadius="40" HorizontalOptions="End"
+                    Margin="25" Stroke="White" StrokeThickness="2" BackgroundColor="{StaticResource Primary}"
+                                  IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanInverter}}" >
+                    <buttons:SfButton.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStopCollection>
+                                <GradientStop Color="#F86C6A" Offset="0" />
+                                <GradientStop Color="#FD5592" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush>
+                    </buttons:SfButton.Background>
+                </buttons:SfButton>
+            </StackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

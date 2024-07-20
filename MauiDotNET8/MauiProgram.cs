@@ -5,9 +5,11 @@ using MauiDotNET8.Interface;
 using MauiDotNET8.Screens;
 using MauiDotNET8.Screens.PopupNotify;
 using MauiDotNET8.Screens.PopupViews;
+using MauiDotNET8.Screens.UrineProtein;
 using MauiDotNET8.Utilities;
 using MauiDotNET8.Utilities.Auth;
 using MauiDotNET8.ViewModels;
+using MauiDotNET8.ViewModels.UrineProtein;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
@@ -54,6 +56,7 @@ namespace MauiDotNET8
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<AboutPage>();
             builder.Services.AddTransient<BloodPressurePage>();
+            builder.Services.AddTransient<UrineProteinPage>();
             builder.Services.AddTransient<FAQPage>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<LoginPage>();
@@ -68,6 +71,7 @@ namespace MauiDotNET8
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<BloodPressureViewModel>();
             builder.Services.AddTransient<AddBloodPressureTestViewModel>();
+            builder.Services.AddTransient<UrineProteinViewModel>();
 
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();
