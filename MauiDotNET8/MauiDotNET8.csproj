@@ -144,7 +144,7 @@
 	  <MauiXaml Update="Screens\PopupViews\AddBloodPressureTestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Screens\UrineProtein\AddUrineProteinTestPage.xaml">
+	  <MauiXaml Update="Screens\PopupViews\AddUrineProteinTestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Screens\UrineProtein\UrineProteinPage.xaml">

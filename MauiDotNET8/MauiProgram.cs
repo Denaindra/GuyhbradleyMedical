@@ -72,6 +72,8 @@ namespace MauiDotNET8
             builder.Services.AddTransient<BloodPressureViewModel>();
             builder.Services.AddTransient<AddBloodPressureTestViewModel>();
             builder.Services.AddTransient<UrineProteinViewModel>();
+            builder.Services.AddTransient<AddUrineProteinTestViewModel>();
+
 
             //Services
             builder.Services.AddSingleton<ILoading, Loading>();

@@ -1,4 +1,5 @@
 ﻿using MauiDotNET8.Interface.API;
+using MauiDotNET8.Modals.API;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace MauiDotNET8.ViewModels.Base
                 return isDirty;
             }
         }
-
+        
         public async Task<string> GetAccessToken()
         {
           var result = await SecureStorage.Default.GetAsync("accessToken");
@@ -120,6 +121,19 @@ namespace MauiDotNET8.ViewModels.Base
                 return;
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task<ClinicContactModal> GetMobileServiceString()
+        {
+            try
+            {
+                var results = await GetTrakkaclinicalAPI().GteMobileServiceResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", await GetAccessToken());
+                return results;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         #endregion
     }

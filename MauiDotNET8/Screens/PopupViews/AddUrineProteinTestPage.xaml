@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:MauiDotNET8.Behavior"
+             xmlns:converters="clr-namespace:MauiDotNET8.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             CanBeDismissedByTappingOutsideOfPopup = "False"
+             x:Class="MauiDotNET8.Screens.PopupViews.AddUrineProteinTestPage">
+    <StackLayout  WidthRequest="350" BackgroundColor="White" >
+        <Frame CornerRadius="20" BackgroundColor="White" BorderColor="White" VerticalOptions="End" Padding="20,10,20,10">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label Text="Add Your Urine Protein Details" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Cancel" TextColor="{StaticResource Primary}" HorizontalOptions="End" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Cancel_Clicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Grid ColumnSpacing="5" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Vertical"  Grid.Row="0" Grid.Column="0">
+                        <Label Text="Date:"/>
+                        <DatePicker x:Name="ResultDate"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical"  Grid.Row="0" Grid.Column="1">
+                        <Label Text="Time:"/>
+                        <TimePicker x:Name="ResultTime"/>
+                    </StackLayout>
+                    <StackLayout  Orientation="Vertical"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Label Text="Urine Protein Level?"/>
+                        <Picker x:Name="proteinLevelPicker">
+                            <Picker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding ValidateProteinLevelCommand}" />
+                            </Picker.Behaviors>
+                        </Picker>
+                        <Label IsVisible="False" x:Name="erroLabel" Text="{Binding SelectedProteinLevel.Errors, Converter={StaticResource FirstValidationErrorConverter}}" Style="{StaticResource ValidationErrorLabelStyle}" HeightRequest="28" />
+                    </StackLayout>
+                    <StackLayout  Orientation="Vertical"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button x:Name="SaveResultsButton" Text="Save Your Result" BackgroundColor="{StaticResource Primary}" TextColor="White" Clicked="SaveResultClicked"/>
+
+                        <ActivityIndicator x:Name="ActivityIndicator" IsRunning="False" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</toolkit:Popup>

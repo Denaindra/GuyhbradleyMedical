@@ -72,7 +72,7 @@
                                                        RefreshViewHeight="50" RefreshViewWidth="50" RefreshViewThreshold="50" TransitionMode="Push"
                                                        IsRefreshing="False">
                             <pullToRefresh:SfPullToRefresh.PullableContent>
-                                <syncfusionList:SfListView x:Name="bloodPressureListView" ItemsSource="{Binding UrineProteinTestAndResponses}" SelectionMode="Single" Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
+                                <syncfusionList:SfListView BackgroundColor="#EDFBFC" x:Name="bloodPressureListView" ItemsSource="{Binding UrineProteinTestAndResponses}" SelectionMode="Single" Padding="10" ItemSpacing="10" AutoFitMode="DynamicHeight">
                                     <syncfusionList:SfListView.ItemTemplate>
                                         <DataTemplate>
                                             <local:UrineProteinCell />
@@ -90,7 +90,7 @@
                 </shimmer:SfShimmer>
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="1" >
-                <buttons:SfButton Text="Add +" WidthRequest="80" HeightRequest="80" CornerRadius="40" HorizontalOptions="End"
+                <buttons:SfButton Text="Add +" WidthRequest="80" HeightRequest="80" CornerRadius="40" HorizontalOptions="End" Clicked="AddUrineProteinButton_Clicked"
                     Margin="25" Stroke="White" StrokeThickness="2" BackgroundColor="{StaticResource Primary}"
                                   IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanInverter}}" >
                     <buttons:SfButton.Background>

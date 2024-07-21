@@ -1,5 +1,7 @@
 using CommunityToolkit.Maui.Views;
+using MauiDotNET8.Modals.API;
 using MauiDotNET8.ViewModels;
+using MauiDotNET8.ViewModels.UrineProtein;
 using Microsoft.Maui.Graphics;
 using System.Drawing;
 
@@ -12,11 +14,17 @@ public partial class AlertPopup : Popup
     private bool contactButtonClicked = false;
     public List<string> AlertMessages { get; set; } = new List<string>();
     private readonly AddBloodPressureTestViewModel vm;
-   
+    private readonly AddUrineProteinTestViewModel uvm;
     public AlertPopup(AddBloodPressureTestViewModel vm)
 	{
 		InitializeComponent();
         this.vm = vm;
+    }
+
+    public AlertPopup(AddUrineProteinTestViewModel uvm)
+    {
+        InitializeComponent();
+        this.uvm = uvm;
     }
     private async Task<bool> SetupPopup()
     {
@@ -34,7 +42,16 @@ public partial class AlertPopup : Popup
         View loadingNumbersView = GetLoadingNumbersView();
         dialerButtonsStackLayout.Children.Add(loadingNumbersView);
 
-        var configuration = await vm.GetMobileServiceString();
+        ClinicContactModal configuration;
+        if (vm != null)
+        {
+            configuration = await vm.GetMobileServiceString();
+        }
+        else
+        {
+            configuration = await uvm.GetMobileServiceString();
+        }
+        
 
         dialerButtonsStackLayout.Children.Remove(loadingNumbersView);
 

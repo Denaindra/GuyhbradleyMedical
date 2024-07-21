@@ -59,7 +59,7 @@
     <MauiXaml Update="Screens\PopupViews\AddBloodPressureTestPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Screens\UrineProtein\AddUrineProteinTestPage.xaml">
+    <MauiXaml Update="Screens\PopupViews\AddUrineProteinTestPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Screens\UrineProtein\UrineProteinPage.xaml">

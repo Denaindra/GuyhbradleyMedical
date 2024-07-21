@@ -12,5 +12,8 @@ namespace MauiDotNET8.Interface.API
     {
         [Get("/api/TestResults/UrineProtein")]
         Task<UrineProteinTest[]> GetUrineProtineResults([AliasAs("code")] string code, [Authorize("Bearer")] string token);
+
+        [Post("/api/TestResults/UrineProtein")]
+        Task<HttpResponseMessage> PopstUrineProtineResults([AliasAs("code")] string code, UrineProteinTest test, [Authorize("Bearer")] string token);
     }
 }

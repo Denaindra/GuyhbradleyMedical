@@ -309,18 +309,5 @@ namespace MauiDotNET8.ViewModels
             return false;
 
         }
-
-        public async Task<ClinicContactModal> GetMobileServiceString()
-        {
-            try
-            {
-                var results = await bloodPressure.GteMobileServiceResults("glCEJnehDpVwtp/u/rLgEHznsD6cv0U2ygzBNgQLChs0KqLtMELKtA==", await GetAccessToken());
-                return results;
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
-        }
     }
 }
