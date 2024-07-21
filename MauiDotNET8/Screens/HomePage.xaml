@@ -22,6 +22,7 @@
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
                     <Label Text=" In partnership with:" HorizontalOptions="Center" FontSize="14"/>
                     <Image Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="100" Source="{Binding ImageLogoPath}" />
+                    <ActivityIndicator x:Name="clinicPartnerImageActivityIndicator" IsVisible="{Binding IsActivityIndicator}" IsRunning="{Binding IsActivityIndicator}" />
                 </StackLayout>
             </Frame>
 
@@ -30,8 +31,8 @@
            
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="16,5,16,5" Spacing="10">
-                    <Button Margin="0,10,0,0" x:Name="btnBloodPressure" Clicked="BloodPressureBtnClicked" Text="BLOOD PRESSURE"   BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
-                    <Button Margin="0,10,0,0" x:Name="btnUrineProtein" Clicked="UrineProteinBtnClicked" Text="URINE PROTEIN" BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
+                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnBloodPressure" Clicked="BloodPressureBtnClicked" Text="BLOOD PRESSURE"   BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
+                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnUrineProtein" Clicked="UrineProteinBtnClicked" Text="URINE PROTEIN" BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
                     <ActivityIndicator x:Name="ActivityIndicator" IsRunning="False" IsVisible="false" />
                     <Label x:Name="lblClaims" Text=""></Label>
                     <Label x:Name="lblNotification" Text=""></Label>

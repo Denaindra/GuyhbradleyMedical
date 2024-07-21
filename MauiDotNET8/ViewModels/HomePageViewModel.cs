@@ -12,10 +12,22 @@ namespace MauiDotNET8.ViewModels
     {
         private readonly IAzureCloudStorageUtility azureCloudStorage;
         private string imageLogoPath;
+        private bool isActivityIndicator;
+
         public HomePageViewModel( IAzureCloudStorageUtility azureCloudStorageUtility)
         {
             this.azureCloudStorage = azureCloudStorageUtility;
         }
+
+
+        public bool IsActivityIndicator
+        {
+            get { return isActivityIndicator; }
+            set { isActivityIndicator = value;
+                OnPropertyChanged(nameof(IsActivityIndicator));
+            }
+        }
+
         public string ImageLogoPath
         {
             get { 
@@ -30,8 +42,10 @@ namespace MauiDotNET8.ViewModels
 
         public async Task GetClinicLogo()
         {
+            IsActivityIndicator = true;
             var logoClinicIdentifier =  await SecureStorage.Default.GetAsync("clinicIdentifier");
             ImageLogoPath = azureCloudStorage.GetClinicLogoPictureURL(logoClinicIdentifier + ".png");
+            IsActivityIndicator = false;
         }
     }
 }
