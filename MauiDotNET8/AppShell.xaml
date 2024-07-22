@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiDotNET8.Screens"
+    xmlns:lang="clr-namespace:MauiDotNET8.Resources.Lanuages"
     xmlns:nestedLocal="clr-namespace:MauiDotNET8.Screens.UrineProtein"
     xmlns:controls="clr-namespace:MauiDotNET8.Controls"
     FlyoutIcon="menu.png"
@@ -12,13 +13,13 @@
         <controls:FlyoutHeader x:Name="profilerPage" />
     </Shell.FlyoutHeader>
     <FlyoutItem x:Name="MainFlyout" Title="Tests" Icon="tests.png">
-        <Tab Title="HomeTabText" Icon="tab_home.png">
+        <Tab Title="{x:Static lang:AppResources.HomeTabText}" Icon="tab_home.png">
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
         </Tab>
-        <Tab Title="BloodTabText" Icon="tab_heart.png" Route="bloodpressure">
+        <Tab Title="{x:Static lang:AppResources.BloodTabText}" Icon="tab_heart.png" Route="bloodpressure">
             <ShellContent ContentTemplate="{DataTemplate local:BloodPressurePage}" />
         </Tab>
-        <Tab Title="UrineTabText" Icon="tab_urine.png" Route="urineprotein">
+        <Tab Title="{x:Static lang:AppResources.UrineTabText}" Icon="tab_urine.png" Route="urineprotein">
             <ShellContent ContentTemplate="{DataTemplate nestedLocal:UrineProteinPage}" />
         </Tab>
     </FlyoutItem>

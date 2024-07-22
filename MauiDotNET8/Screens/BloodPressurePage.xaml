@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:MauiDotNET8.Resources.Lanuages"
              x:Class="MauiDotNET8.Screens.BloodPressurePage"
              xmlns:shimmer="clr-namespace:Syncfusion.Maui.Shimmer;assembly=Syncfusion.Maui.Core"
              xmlns:converters="clr-namespace:MauiDotNET8.Converters"
@@ -11,7 +12,7 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:controls="clr-namespace:MauiDotNET8.CustomViews.Controls"
              xmlns:local="clr-namespace:MauiDotNET8.DataTemplates"
-             Title="Your Blood Pressure">
+             Title="{x:Static lang:AppResources.BloodPressurePageTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -52,7 +53,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Text="Summary: " FontSize="16"  Grid.Row="0" Margin="20,10,20,0"/>
+                <Label Text="{x:Static lang:AppResources.SummaryLabelText}" FontSize="16"  Grid.Row="0" Margin="20,10,20,0"/>
                 <shimmer:SfShimmer x:Name="shimmerChart" Grid.Row="1" IsActive="{Binding IsBusy}"
                                   WaveColor="{StaticResource ShimmerWaveColor}"
                                   WaveWidth ="{StaticResource ShimmerWaveWidth}" >

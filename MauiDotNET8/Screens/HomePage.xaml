@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:MauiDotNET8.Resources.Lanuages"
              x:Class="MauiDotNET8.Screens.HomePage"
-             Title="TrakkaClinical">
+             Title="{x:Static lang:AppResources.HomePageTitle}">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -20,7 +21,7 @@
 
             <Frame HasShadow="False" BorderColor="Wheat" CornerRadius="10" BackgroundColor="White"  Margin="20,20,20,10" Padding="5">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                    <Label Text=" In partnership with:" HorizontalOptions="Center" FontSize="14"/>
+                    <Label Text="{x:Static lang:AppResources.InPartnershipWithText}" HorizontalOptions="Center" FontSize="14"/>
                     <Image Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="100" Source="{Binding ImageLogoPath}" />
                     <ActivityIndicator x:Name="clinicPartnerImageActivityIndicator" IsVisible="{Binding IsActivityIndicator}" IsRunning="{Binding IsActivityIndicator}" />
                 </StackLayout>
@@ -31,8 +32,8 @@
            
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="16,5,16,5" Spacing="10">
-                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnBloodPressure" Clicked="BloodPressureBtnClicked" Text="BLOOD PRESSURE"   BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
-                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnUrineProtein" Clicked="UrineProteinBtnClicked" Text="URINE PROTEIN" BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
+                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnBloodPressure" Clicked="BloodPressureBtnClicked" Text="{x:Static lang:AppResources.BloodPressureButton}"   BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
+                    <Button FontAttributes="Bold" Margin="0,10,0,0" x:Name="btnUrineProtein" Clicked="UrineProteinBtnClicked" Text="{x:Static lang:AppResources.UrineProteinButton}" BackgroundColor="{DynamicResource Primary}" TextColor="White"/>
                     <ActivityIndicator x:Name="ActivityIndicator" IsRunning="False" IsVisible="false" />
                     <Label x:Name="lblClaims" Text=""></Label>
                     <Label x:Name="lblNotification" Text=""></Label>
