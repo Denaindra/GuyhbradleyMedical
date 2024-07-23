@@ -5,7 +5,7 @@
              x:Class="MauiDotNET8.DataTemplates.BloodPressureCell">
     <ViewCell.View>
         <Border StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White" Stroke="Gray">
-            <Grid Margin="0" >
+            <Grid Margin="0"  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -32,7 +32,7 @@
                     </ResourceDictionary>
                 </Grid.Resources>
                 <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource ResponseLevelColourFormatter}}" Margin="0" />
-                <Grid Grid.Row="0" Grid.Column="1" RowSpacing="0"  Margin="0,10,0,0">
+                <Grid Grid.Row="0" Grid.Column="1" RowSpacing="0"  Margin="0,2,0,0" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
@@ -68,7 +68,7 @@
                     <Label Text="mm Hg" Grid.Row="2" Grid.Column="0"  TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
                     <Label Text="mm Hg" Grid.Row="2" Grid.Column="2"  TextColor="DarkGray" FontSize="14" HorizontalOptions="CenterAndExpand"/>
                 </Grid>
-                <StackLayout Grid.Row="0" Grid.Column="2"  Margin="0,10,10,0">
+                <StackLayout Grid.Row="0" Grid.Column="2"  Margin="0,10,10,0"  >
                     <!-- Date and Time formatted using a converter -->
                     <Label Text="{Binding TestDateTimeUTC, Converter={StaticResource DateTimeToStringFormatter}}" TextColor="DarkGray" FontSize="14" HorizontalOptions="EndAndExpand"/>
                     <!-- Headache Border -->
@@ -105,14 +105,14 @@
                     </Border>
                     <!-- End Abdominal Pains Border -->
                 </StackLayout>
-                <StackLayout Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Status}" Padding="10,0,10,10" Margin="0">
+                <StackLayout Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Status}" Padding="10"  HorizontalOptions="Start" >
                     <!-- Systolic Response Message -->
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding SystolicResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
-                        <Label Text="{Binding SystolicResponseMessage}" TextColor="{Binding SystolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                        <Label LineBreakMode="WordWrap" VerticalOptions="Start"  HorizontalOptions="FillAndExpand" Text="{Binding SystolicResponseMessage}" TextColor="{Binding SystolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
                     </StackLayout>
                     <!-- Diastolic Response Message -->
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
-                        <Label Text="{Binding DiastolicResponseMessage}" TextColor="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
+                        <Label LineBreakMode="WordWrap" VerticalOptions="Start"  HorizontalOptions="FillAndExpand" Text="{Binding DiastolicResponseMessage}" TextColor="{Binding DiastolicResponse, Converter={StaticResource ResponseLevelBackgroundColourFormatter}, Mode=OneWay}" FontSize="14"></Label>
                     </StackLayout>
                     <!-- Headaches Response Message -->
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding HeadachesResponse, Converter={StaticResource ResponseLevelAlertAndWarningVisibilityConverter}}">
