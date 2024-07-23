@@ -8,10 +8,11 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PullToRefresh;assembly=Syncfusion.Maui.PullToRefresh"
              xmlns:syncfusionList="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
-             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              NavigationPage.HasNavigationBar="False"
              xmlns:controls="clr-namespace:MauiDotNET8.CustomViews.Controls"
              xmlns:local="clr-namespace:MauiDotNET8.DataTemplates"
+             xmlns:locals="clr-namespace:MauiDotNET8.ViewModels"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              Title="{x:Static lang:AppResources.BloodPressurePageTitle}">
 
     <ContentPage.Resources>
@@ -34,7 +35,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStopCollection>
                     <GradientStop Color="Azure" Offset="0.0" />
-                    <GradientStop Color="#DFECF1" Offset="1.1" />   <!--1.0-->
+                    <GradientStop Color="#DFECF1" Offset="1.0" />  
                 </GradientStopCollection>
             </LinearGradientBrush>
         </Grid.Background>
@@ -78,7 +79,30 @@
                         </Frame>
                     </shimmer:SfShimmer.CustomView>-->
                     <shimmer:SfShimmer.Content>
-                        <Frame CornerRadius="10" Margin="20,10,20,10" HasShadow="False" Padding="0,10,10,5">
+                        <Grid>
+                            <chart:SfCartesianChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Gold" >
+
+                                <!--Initialize the horizontal axis for the .NET MAUI Cartesian Chart.-->
+                                <chart:SfCartesianChart.XAxes>
+                                    <chart:CategoryAxis Title="{Binding XAxesTitle}" />
+                                </chart:SfCartesianChart.XAxes>
+
+                                <!--Initialize the vertical axis for the .NET MAUI Cartesian Chart.-->
+                                <chart:SfCartesianChart.YAxes>
+                                    <chart:NumericalAxis Title="{Binding YAxesTitle}"/>
+                                </chart:SfCartesianChart.YAxes>
+
+                                <!--Adding Range Column Series to the .NET MAUI Cartesian Chart.-->
+                                <chart:RangeColumnSeries 
+                                    ItemsSource="{Binding MapData}" 
+                                    XBindingPath="DateTime"
+                                    High="High" Low="Low" >
+                                </chart:RangeColumnSeries>
+                            </chart:SfCartesianChart>
+                        </Grid>
+                        
+                        
+                        <!--<Frame CornerRadius="10" Margin="20,10,20,10" HasShadow="False" Padding="0,10,10,5">-->
                             <!--<chart:SfChart x:Name="bloodPressureChart" TrackballCreated="bloodPressureChart_TrackballCreated">
                                 <chart:SfChart.PrimaryAxis>
                                     <chart:DateTimeAxis x:Name="dateTimeAxis" LabelCreated="dateTimeAxis_LabelCreated">
@@ -125,7 +149,7 @@
                                     <chart:ChartTrackballBehavior ShowLabel="True" ShowLine="True"/>
                                 </chart:SfChart.ChartBehaviors>
                             </chart:SfChart>-->
-                        </Frame>
+                        <!--</Frame>-->
                     </shimmer:SfShimmer.Content>
                 </shimmer:SfShimmer>
             </Grid>
