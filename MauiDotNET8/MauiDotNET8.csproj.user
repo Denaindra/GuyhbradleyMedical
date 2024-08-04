@@ -11,6 +11,11 @@
     <PlatformTarget>arm64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Lanuages\AppResources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <MauiXaml Update="Controls\FlyoutHeader.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
