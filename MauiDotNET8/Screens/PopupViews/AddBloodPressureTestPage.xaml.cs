@@ -6,10 +6,12 @@ namespace MauiDotNET8.Screens.PopupViews;
 public partial class AddBloodPressureTestPage : Popup
 {
     private readonly AddBloodPressureTestViewModel vm;
-    public AddBloodPressureTestPage(AddBloodPressureTestViewModel vm)
+    private readonly BloodPressureViewModel vm1;
+    public AddBloodPressureTestPage(AddBloodPressureTestViewModel vm, BloodPressureViewModel vm1)
 	{
         InitializeComponent();
         this.vm = vm;
+        this.vm1 = vm1;
         BindingContext = vm;
         SetupUI();
     }
@@ -28,9 +30,13 @@ public partial class AddBloodPressureTestPage : Popup
         AbdominalPainsPicker.ItemDisplayBinding = new Binding("Name");
         AbdominalPainsPicker.SetBinding(Picker.SelectedItemProperty, "SelectedAbdominalPains");
     }
-    private void CancleTapped(object sender, TappedEventArgs e)
+    private async void CancleTapped(object sender, TappedEventArgs e)
     {
-        this.CloseAsync();
+        var results =  await vm1.GetBloodPressureTests();
+        if (results)
+        {
+            this.Close();
+        }
     }
 
     private void EntryTextChanged(object sender, TextChangedEventArgs e)

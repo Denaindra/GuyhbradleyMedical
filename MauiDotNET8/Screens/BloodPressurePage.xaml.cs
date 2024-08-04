@@ -32,7 +32,7 @@ public partial class BloodPressurePage : ContentPage
     private async void AddBtnClick(object sender, EventArgs e)
     {
         pressureTestViewModel.AlertPopupCommand = alertPopup;
-        var popup = new AddBloodPressureTestPage(pressureTestViewModel);
+        var popup = new AddBloodPressureTestPage(pressureTestViewModel,vm);
         await this.ShowPopupAsync(popup);
     }
 
