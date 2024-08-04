@@ -80,7 +80,7 @@
                     </shimmer:SfShimmer.CustomView>-->
                     <shimmer:SfShimmer.Content>
                         <Grid>
-                            <chart:SfCartesianChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Gold" >
+                            <chart:SfCartesianChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" >
 
                                 <!--Initialize the horizontal axis for the .NET MAUI Cartesian Chart.-->
                                 <chart:SfCartesianChart.XAxes>
