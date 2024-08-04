@@ -2,9 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiDotNET8.Screens.FAQPage"
-            
              Title="FAQPage">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStopCollection>
+                    <GradientStop Color="Azure" Offset="0.0" />
+                    <GradientStop Color="#DFECF1" Offset="1.0" />
+                </GradientStopCollection>
+            </LinearGradientBrush>
+        </Grid.Background>
         <WebView x:Name="FAQWebview" VerticalOptions="FillAndExpand"></WebView>
     </Grid>
 </ContentPage>
